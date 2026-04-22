@@ -84,7 +84,7 @@ def save_to_notion(lead: LeadSubmission):
         method="POST",
     )
     try:
-        with urllib.request.urlopen(req) as resp:
+        with urllib.request.urlopen(req, timeout=15) as resp:
             return json.loads(resp.read())
     except urllib.error.HTTPError as e:
         body = e.read().decode()
